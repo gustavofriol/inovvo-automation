@@ -66,7 +66,10 @@ logger.setLevel(logging.DEBUG)
 
 
 def query(sql_query):
-    conn = oracledb.connect(user='cog', password='ro5iww8b', dsn='jira')
+    
+    # Definição das credenciais do banco de dados em que estão armazenados os dados de potência de cada usina (Informações ocultadas)
+    
+    conn = oracledb.connect(user= # usuário do BD # , password= # senha do BD #, dsn= # dsn do BD #)
     try:
         cursor = conn.cursor()
         cursor.execute(sql_query)
@@ -83,7 +86,7 @@ def save_query():
     # Criar um novo arquivo Excel e selecionar a primeira planilha
     workbook = openpyxl.Workbook()
     sheet = workbook.active
-    column_a = [83669000, 73694000, 83740000, 90000050]
+    column_a = [83669000, 73694000, 83740000, 90000050 # Nessa coluna são passados os códigos de cada usina
     column_b = [excel_date] * len(column_a)
 
     # Preencher as colunas A e B com os valores
