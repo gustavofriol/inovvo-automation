@@ -6,7 +6,7 @@ from email.mime.base import MIMEBase
 from email import encoders
 from datetime import datetime, timedelta
 
-# Definindo variáveis
+# Código de consulta SQL de cada usina
 
 uis_query = """
 select Data, UIS_TOT from (
@@ -49,12 +49,14 @@ select Data, URC_TOT from (
 )
 """
 
-previous_time = datetime.now() - timedelta(hours=1)
+# Definição e formatação das variáveis de data
 
+previous_time = datetime.now() - timedelta(hours=1)
 file_date = previous_time.strftime("%d_%m_%Y - %H_00")
 excel_date = previous_time.strftime("%d/%m/%Y  %H:00")
 
 # Configurando o log com rotação por número de arquivos
+
 log_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 log_handler = RotatingFileHandler(r'K:\Geracao Comum\DVOP\Controle de Projetos\Inovvo\Histórico.log', maxBytes=1e6, backupCount=5)
 log_handler.setFormatter(log_formatter)
@@ -62,8 +64,6 @@ logger = logging.getLogger(__name__)
 logger.addHandler(log_handler)
 logger.setLevel(logging.DEBUG)
 
-
-# Definindo Funções
 
 def query(sql_query):
     conn = oracledb.connect(user='cog', password='ro5iww8b', dsn='jira')
@@ -105,11 +105,11 @@ def save_query():
 
 
 def send_query():
-    # Configurações do servidor SMTP do Outlook
-    smtp_host = 'smtp.celesc.com.br'
-    smtp_port = 25
-    username = 'cog@celesc.com.br'
-    receiver = 'dados@inovvodata.com.br'
+    # Configurações do servidor SMTP da CELESC (Informações ocultadas)
+    smtp_host = # servidor smtp CELESC #  
+    smtp_port = # porta do servidor #
+    username = # email de quem envia #
+    receiver = # email de quem recebe #
 
     # Criando o objeto MIMEMultipart para compor o e-mail
     msg = MIMEMultipart()
